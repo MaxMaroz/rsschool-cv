@@ -1,1 +1,1 @@
-# rsschool-cv
+https://MaxMaroz.github.io/rsschool-cv/
