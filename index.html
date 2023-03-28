@@ -1,117 +1,116 @@
 <!DOCTYPE html>
 <html>
-<head lang = "en">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href = "style.css" type ="text/css" rel="stylesheet" >
-	<title></title>
+<head lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href = "style.css" type ="text/css" rel="stylesheet" >
+<title></title>
 
 </head>
 <body>
-	<title>Tic-tac-toe</title>
+<title id=hui_sosi>Tic-tac-toe</title>
 <h1 class="text">Tic-tac-toe</h1>
 <div class="area-wrapper">
-	<div id = "area">
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-	</div>
+<div id = "area">
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+</div>
 
 </div>
 <div id="model-result-wrapper">
-	<div id="overlay"></div>
-	<div id="model-window">
-		<div id="content" style="color: gold;">content</div>
-		<div id="tix" style="color: gold">number of moves</div>
-		<div id="btn-close">Start New Game</div>
-	</div>
+<div id="overlay"></div>
+<div id="model-window">
+<div id="content" style="color: gold;">content</div>
+<div id="tix" style="color: gold">number of moves</div>
+<div id="btn-close">Start New Game</div>
+</div>
 </div>
 <div class="local-storage">Score</div>
 <div class="settings">
-	
+
 </div>
 <script type="text/javascript">
-		const area = document.getElementById("area");
-		const tix = document.getElementById("tix");
-		let move = 0;
-		let result = '';
-		const contentWrapper = document.getElementById('content');
-		const modelResult = document.getElementById('model-result-wrapper');
-		const overlay = document.getElementById('overlay');
-		const btnClose = document.getElementById('btn-close');
-		area.addEventListener('click', e=>{
-			if(e.target.className='box'){
-				move % 2 === 0 ? e.target.innerHTML = 'X' : e.target.innerHTML = "0";
-				move++;
-				check()
-				console.log(move);
- 			}
-		}) 
+const area = document.getElementById("area");
+const tix = document.getElementById("tix");
+let move = 0;
+let result = '';
+const contentWrapper = document.getElementById('content');
+const modelResult = document.getElementById('model-result-wrapper');
+const overlay = document.getElementById('overlay');
+const btnClose = document.getElementById('btn-close');
+area.addEventListener('click', e=>{
+if(e.target.className='box'){
+move % 2 === 0 ? e.target.innerHTML = 'X' : e.target.innerHTML = "0";
+move++;
+check()
+console.log(move);
+}
+})
 
-		const check = () => {
-			const boxes = document.getElementsByClassName('box')
-			const arr = [
-				[0,1,2],
-				[3,4,5],
-				[6,7,8],
-				[0,3,6],
-				[1,4,7],
-				[2,5,8],
-				[0,4,8],
-				[2,4,6]
-			];
-			for (i=0; i < arr.length; i++) {
-				if(
-						boxes[arr[i][0]].innerHTML == 'X' && boxes[arr[i][1]].innerHTML == 'X' && boxes[arr[i][2]].innerHTML == 'X'
-					){
-						result = 'crosses win';
-						prepareResult(result);
-				} else if (boxes[arr[i][0]].innerHTML == '0' && boxes[arr[i][1]].innerHTML == '0' && boxes[arr[i][2]].innerHTML == '0'
-					) {
-					result = 'zeroes win';
-					prepareResult(result);
-				}
-				  else if (move>9){
+const check = () => {
+const boxes = document.getElementsByClassName('box')
+const arr = [
+[0,1,2],
+[3,4,5],
+[6,7,8],
+[0,3,6],
+[1,4,7],
+[2,5,8],
+[0,4,8],
+[2,4,6]
+];
+for (i=0; i < arr.length; i++) {
+if(
+boxes[arr[i][0]].innerHTML == 'X' && boxes[arr[i][1]].innerHTML == 'X' && boxes[arr[i][2]].innerHTML == 'X'
+){
+result = 'crosses win';
+prepareResult(result);
+} else if (boxes[arr[i][0]].innerHTML == '0' && boxes[arr[i][1]].innerHTML == '0' && boxes[arr[i][2]].innerHTML == '0'
+) {
+result = 'zeroes win';
+prepareResult(result);
+}
+else if (move>9){
 
-					result = 'Dead Heat, try again';
-					prepareResult(result);
+result = 'Dead Heat, try again';
+prepareResult(result);
 
-				}
-			}
-		}
+}
+}
+}
 
-		const prepareResult = winner =>{
-			contentWrapper.innerHTML = `${winner} !`;
-			tix.innerHTML = `number of moves ${move}`;
-			modelResult.style.display = 'block';
-			
-		}
+const prepareResult = winner =>{
+contentWrapper.innerHTML = `${winner} !`;
+tix.innerHTML = `number of moves ${move}`;
+modelResult.style.display = 'block';
 
+}
 
-		const closeModel = () => {
-			modelResult.style.display = 'none';
-			location.reload();
-		}
-		const Statistics = () => {
-			modelResult.style.display = 'none';
-			location.reload();
-		}
+const closeModel = () => {
+modelResult.style.display = 'none';
+location.reload();
+}
+const Statistics = () => {
+modelResult.style.display = 'none';
+location.reload();
+}
 
-		overlay.addEventListener('click', closeModel)
-		btnClose.addEventListener('click', closeModel)
-	</script>
-	<footer>
-		<div class="source">
-			<a href="https://rs.school/js-stage0/" target="blank" class="rs"><img class="pict" src="./pct/rs_school_js.svg" ></a>
-			<a href="https://github.com/MaxMaroz" target="blank" class="tekst">My GitHub</a>
-			<p class="t1">Date of creation: 21.02.2022</p>
-		</div>
-	</footer>
+overlay.addEventListener('click', closeModel)
+btnClose.addEventListener('click', closeModel)
+</script>
+<footer>
+<div class="source">
+<a href="https://rs.school/js-stage0/" target="blank" class="rs"><img alt="Sorry you are blind" class="pict" src="./pct/rs_school_js.svg" ></a>
+<a href="https://github.com/MaxMaroz" target="blank" class="tekst">My GitHub</a>
+<p class="t1">Date of creation: 21.02.2022</p>
+</div>
+</footer>
 </body>
 </html>
