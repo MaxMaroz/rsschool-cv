@@ -1,202 +1,116 @@
 <!DOCTYPE html>
-<html lang="uk">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content = "width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
-        <link rel="stylesheet" href="style.css">
-        <link rel="shortcut icon" href="./pic/favicon1.ico" type="image/ico">
-        <title>Shelter</title>
-    </head>
-    <body>
+<html>
+<head lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href = "style.css" type ="text/css" rel="stylesheet" >
+<title></title>
 
-        <script src="./script.js"></script>
-        
-    
-        <main>
-        <header>
-            <div id="header-container">
-            <div id="logo">
-                <h2>Cozy House</h2>
-                <a>Shelter for pets in Boston</a>
-            </div>
-            <nav class="nav-menu">
-                <a style="text-decoration: underline; text-decoration-color: #F1CDB3;" class="nav-name" href="#about">About Shelter</a>
-                <a class="nav-name" href="pets.html">Our Pets</a>
-                <a class="nav-name" href="#help">Help the Shelter</a>
-                <a class="nav-name" href="#donation">Contacts</a>
-            </nav>
-        </div>
-        
-        <div id="Not-only">
-            <div id="inform">
-            <h1>Not only people <br> need a house</h1>
-            <pre id="text">
-We offer to give a chance to a little and nice puppy with an extremely
-wide and open heart. He or she will love you more than anybody else
-in the world, you will see!
-            </pre>
-            <input type="button" class="styled" value="Make a friend">
+</head>
+<body>
+<title id=hui_sosi>Tic-tac-toe</title>
+<h1 class="text">Tic-tac-toe</h1>
+<div class="area-wrapper">
+<div id = "area">
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+</div>
 
-        </div>
-        <img src="./pic/start-screen-puppy.png" alt="Sorru, you are blind" id="pes">
-            
-        </div>
-    </header>
-        <div id="about">
-            <img src="./pic/about-pets.png" alt="Sorry, you are blind">
-            <div class = about_txt>
-                <h3>About the shelter “Cozy House”</h3>
-                <p>Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.</p>
-                <p>We feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</p>
-            </div>
-        </div>
-        <div class="our_friends">
-            <h3>Our friens who <br> are looking for a house</h3>
-            <div class = "pets_inf">
-                <input style="color: #CDCDCD; border-color: #CDCDCD;" type="button" class="pseudo" value="<">
-                <div class="card">
-                    <img src="./pic/pets-katrine.png" alt="Sorry, you are blind">
-                    <p>Katrine</p>
-                    <button type="button" class="LM">Learn more</button>
-                </div>
-                <div class="card">
-                    <img src="./pic/pets-jennifer.png" alt="Sorry, you are blind">
-                    <p>Jennifer</p>
-                    <button type="button" class="LM">Learn more</button>
-                </div>
-                <div class="card">
-                    <img src="./pic/pets-woody.png" alt="Sorry, you are blind">
-                    <p>Woody</p>
-                    <button type="button" class="LM">Learn more</button>
-                </div>
-                <input style="border-color: #F1CDB3;" type="button" class="pseudo" value=">">
-            </div>
-            
-                <a href="./pets.html" style=" border: 0;
-                color: black;
-                text-decoration: none;
-                font-family: inherit;
-                width: 207px;
-                height: 52px;
-                 background-color: #F1CDB3;
-                position: relative;
-                
-                left: 50%;
-                top: 50px;
-                border-radius: 25px;">Get tp know the rest</a>
-        </div>
-        <div id="help">
-            <h3>How you can help our shelter</h3>
-            <div id="full-list">
-                <div class = "list_1">
-                    <div class="IC">
-                        <img src="./pic/icon-pet-food.png" alt="Sorry, you are blind">
-                        <p>Pet food</p>
-                    </div>
+</div>
+<div id="model-result-wrapper">
+<div id="overlay"></div>
+<div id="model-window">
+<div id="content" style="color: gold;">content</div>
+<div id="tix" style="color: gold">number of moves</div>
+<div id="btn-close">Start New Game</div>
+</div>
+</div>
+<div class="local-storage">Score</div>
+<div class="settings">
 
-                    <div class="IC">
-                        <img src="./pic/transportation.png" alt="Sorry, you are blind">
-                        <p>Transportation</p>
-                    </div>
+</div>
+<script type="text/javascript">
+const area = document.getElementById("area");
+const tix = document.getElementById("tix");
+let move = 0;
+let result = '';
+const contentWrapper = document.getElementById('content');
+const modelResult = document.getElementById('model-result-wrapper');
+const overlay = document.getElementById('overlay');
+const btnClose = document.getElementById('btn-close');
+area.addEventListener('click', e=>{
+if(e.target.className='box'){
+move % 2 === 0 ? e.target.innerHTML = 'X' : e.target.innerHTML = "0";
+move++;
+check()
+console.log(move);
+}
+})
 
-                    <div class="IC">
-                        <img src="./pic/toys.png" alt="Sorry, you are blind">
-                        <p>Toys</p>
-                    </div>
+const check = () => {
+const boxes = document.getElementsByClassName('box')
+const arr = [
+[0,1,2],
+[3,4,5],
+[6,7,8],
+[0,3,6],
+[1,4,7],
+[2,5,8],
+[0,4,8],
+[2,4,6]
+];
+for (i=0; i < arr.length; i++) {
+if(
+boxes[arr[i][0]].innerHTML == 'X' && boxes[arr[i][1]].innerHTML == 'X' && boxes[arr[i][2]].innerHTML == 'X'
+){
+result = 'crosses win';
+prepareResult(result);
+} else if (boxes[arr[i][0]].innerHTML == '0' && boxes[arr[i][1]].innerHTML == '0' && boxes[arr[i][2]].innerHTML == '0'
+) {
+result = 'zeroes win';
+prepareResult(result);
+}
+else if (move>9){
 
-                    <div class="IC">  
-                        <img src="./pic/bowls-and-cups.png" alt="Sorry, you are blind">
-                        <p>Bowls and Cups</p>
-                    </div>
-                    
-                    <div class="IC">
-                        <img src="./pic/shampoos.png" alt="Sorry, you are blind">
-                        <p>Shampoos</p>
-                    </div>
-                </div>
-                <div class = "list_1">
-                    <div class="IC">
-                        <img src="./pic/vitamins.png" alt="Sorry, you are blind">
-                        <p>Vitamins</p>
-                    </div>
+result = 'Dead Heat, try again';
+prepareResult(result);
 
-                    <div class="IC">
-                        <img src="./pic/medicines.png" alt="Sorry, you are blind">
-                        <p>Medicines</p>
-                    </div>  
-                    
-                    <div class="IC">
-                        <img src="./pic/collars-or-leashes.png" alt="Sorry, you are blind">
-                        <p>Collars or leashes</p>
-                    </div>
-                    
-                    <div class="IC">
-                        <img src="./pic/sleeping-area.png" alt="Sorry, you are blind">
-                        <p>Sleeping areas</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="donation">
-            <img src="./pic/donation-dog.png" alt="Sorry, you are blind">
-            <div class="about_txt">
-            <h3>You can also <br> make a donation</h3>
-            <p>Name of the bank / Type of bank account</p>
-            <div id="credit_card">
-                <img src="./pic/credit-card.svg" alt="Sorry, you are blind">
-                <p>8380 2880 8028 8791 7435</p>
-            </div>
-            <pre>
-Legal information and lorem ipsum dolor sit amet, consectetur 
-adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac 
-diam. Praesent ultrices maximus tortor et vulputate. Interdum et
-malesuada fames ac ante ipsum primis in faucibus.</pre>
-            </div>
-        </div>
-        <footer>
-            <div id="container">
-                <div class="loor">
-                <div id="contacts">
-                    <h3>For questions <br> and suggestions</h3>
-                    <div class="links">
-                        <a style="text-decoration: none; color: #F1CDB3;" href="https://www.shelter.org.uk/" target="_blank"><img src="./pic/mail.svg" alt="Sorry, you are blind"></a>
-                        <a style="text-decoration: none; color: #F1CDB3;" href="https://www.shelter.org.uk/" target="_blank"><p>email@shelter.com</p></a>
-                    </div>
-                    <div class="links">
-                        <a style="text-decoration: none; color: #F1CDB3;" href="https://www.google.com/search?q=%2B13+674+567+75+54&oq=%2B13+674+567+75+54&aqs=chrome..69i57.697j0j4&sourceid=chrome&ie=UTF-8" target="_blank"><img src="./pic/phone.svg" alt="Sorry, you are blind"></a>
-                        <a style="text-decoration: none; color: #F1CDB3;" href="https://www.google.com/search?q=%2B13+674+567+75+54&oq=%2B13+674+567+75+54&aqs=chrome..69i57.697j0j4&sourceid=chrome&ie=UTF-8" target="_blank"><p>+13 674 567 75 54</p></a>
-                    </div>
-                </div>
-            </div>
-                <div class="loor">
-                <div id="location">
-                    <h3>We are waiting <br> for your visit</h3>
-                    <div class="links">
-                        <a style="text-decoration: none; color: #F1CDB3;" href="https://www.google.com/maps/place/One+Beacon+Street/@42.3584661,-71.0629685,17z/data=!3m2!4b1!5s0x8847599b8a76e59b:0xeb13c736d00feebc!4m6!3m5!1s0x89e37084b03c3f77:0x78bf403c1d0509c5!8m2!3d42.3584622!4d-71.0607745!16zL20vMDQ3YjB4" target="_blank">
-                            <img src="./pic/pin.svg" alt="Sorry, you are blind">
-                        </a>
-                        <a style="text-decoration: none; color: #F1CDB3;" href="https://www.google.com/maps/place/One+Beacon+Street/@42.3584661,-71.0629685,17z/data=!3m2!4b1!5s0x8847599b8a76e59b:0xeb13c736d00feebc!4m6!3m5!1s0x89e37084b03c3f77:0x78bf403c1d0509c5!8m2!3d42.3584622!4d-71.0607745!16zL20vMDQ3YjB4" target="_blank">
-                            <p>1 Central Street, Boston (entrance from the store)</p>
-                        </a>
-                    </div>
-                    <div class="links">
-                        <a style="text-decoration: none; color: #F1CDB3;" href="https://www.google.com/maps/search/18+South+Park,+London/@51.5143312,-0.2113482,12z/data=!3m1!4b1" target="_blank">
-                            <img src="./pic/pin.svg" alt="Sorry, you are blind">
-                        </a>
-                        <a style="text-decoration: none; color: #F1CDB3;" href="https://www.google.com/maps/search/18+South+Park,+London/@51.5143312,-0.2113482,12z/data=!3m1!4b1" target="_blank">
-                            <p>18 South Park, London </p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-                <div class="loor">
-                <div class="links">
-                    <img src="./pic/footer-puppy.png" alt="Sorry, you are blind">
-                </div>
-            </div>
-            </div>
-        </footer>
-        </main>
-    </body>
+}
+}
+}
+
+const prepareResult = winner =>{
+contentWrapper.innerHTML = `${winner} !`;
+tix.innerHTML = `number of moves ${move}`;
+modelResult.style.display = 'block';
+
+}
+
+const closeModel = () => {
+modelResult.style.display = 'none';
+location.reload();
+}
+const Statistics = () => {
+modelResult.style.display = 'none';
+location.reload();
+}
+
+overlay.addEventListener('click', closeModel)
+btnClose.addEventListener('click', closeModel)
+</script>
+<footer>
+<div class="source">
+<a href="https://rs.school/js-stage0/" target="blank" class="rs"><img alt="Sorry you are blind" class="pict" src="./pct/rs_school_js.svg" ></a>
+<a href="https://github.com/MaxMaroz" target="blank" class="tekst">My GitHub</a>
+<p class="t1">Date of creation: 21.02.2022</p>
+</div>
+</footer>
+</body>
+</html>
